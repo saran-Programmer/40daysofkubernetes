@@ -1,4 +1,4 @@
-# copying the python and the OS Images
+# Getting the ready-made Alpine image which already has Python 3.12 in it
 FROM python:3.12-alpine
 
 # Creating a working directory for our application.
