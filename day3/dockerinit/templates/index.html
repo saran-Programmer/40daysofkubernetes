@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <form action="/add" method="post">
+        <input type="text" name="text">
+        <button type="submit">Add</button>
+    </form>
+    <ul>
+        {% for todo in todos %}
+        <li>
+            {{ todo.text }}
+            <form action="/delete/{{ todo.id }}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
