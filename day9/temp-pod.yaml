@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: temp-pod
+  labels:
+    env: dev
+spec:
+  restartPolicy: Never
+  containers:
+    - name: busybox-test
+      image: busybox:1.36
+      command: ["wget", "-O-", "myapp:80"]
