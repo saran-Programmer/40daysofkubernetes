@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend
+  labels:
+    env: dev
+    tier: backend
+spec:
+  initContainers:
+    - name: wait-for-database
+      image: busybox:1.36
+      command: ['sh', '-c', 'until nslookup database.multi-container-pod.svc.cluster.local; do echo waiting for database; sleep 2; done']
+    - name: wait-for-cache
+      image: busybox:1.36
+      command: ['sh', '-c', 'until nslookup cache.multi-container-pod.svc.cluster.local; do echo waiting for cache; sleep 2; done']
+  containers:
+    - name: backend-container
+      image: alpine:3.20
+      command: ['sh', '-c', 'echo backend started; sleep infinity']
