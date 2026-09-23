@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-learning
+  labels:
+    app: one-and-done
+spec:
+  template:
+    metadata:
+      labels:
+        app: one-and-done
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: task-runner
+          image: busybox
+          command: ["sh", "-c", "echo \"doing my one job and then I'm out\"; sleep 5"]

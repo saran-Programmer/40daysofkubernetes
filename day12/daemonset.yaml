@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset-learning
+  labels:
+    app: nosy-neighbor
+spec:
+  selector:
+    matchLabels:
+      app: nosy-neighbor
+  template:
+    metadata:
+      labels:
+        app: nosy-neighbor
+    spec:
+      containers:
+        - name: gossip-agent
+          image: busybox
+          command: ["sh", "-c", "echo \ hi from $(hostname), just here spying on this node forever\"; sleep 3600"]
