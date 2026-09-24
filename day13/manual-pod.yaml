@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: manual-schudled-pod
+  labels:
+    env: dev
+    tier: loadbalancer
+spec:
+  nodeName: cka-cluster-3-worker2
+  containers:
+  - name: nginx-container
+    image: nginx:1.23.4
+    ports:
+    - containerPort: 80
