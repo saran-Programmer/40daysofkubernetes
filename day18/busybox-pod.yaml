@@ -1,0 +1,19 @@
+  apiVersion: v1
+  kind: Pod
+  metadata: 
+    name: temp-pod
+  spec:
+    containers:
+    - name: busybox-container
+      image: busybox
+      args:
+      - /bin/sh
+      - -c
+      - touch /tmp/healthy; sleep 30; rm -f /tmp/healthy; sleep 60
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/healthy
+        initialDelaySeconds: 5
+        periodSeconds: 5
