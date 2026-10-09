@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-single-secret
+spec:
+  containers:
+  - name: bussy-box-secret-learning
+    image: busybox
+    command: ["/bin/sh", "-c", "echo $backendusername; sleep 10"]
+    env:
+    - name: backendusername
+      valueFrom:
+        secretKeyRef:
+          name: backend-secrets
+          key: username
